@@ -2,17 +2,22 @@ import { useLang } from '@/contexts/LangContext';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '@/assets/bindflow-logo.png';
 
 const Header = () => {
   const { lang, setLang, t } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { label: t('Bemutatkozás', 'Intro'), href: '#hero' },
-    { label: t('Szolgáltatások', 'Services'), href: '#services' },
-    { label: t('Referenciák', 'References'), href: '#references' },
-    { label: t('Kapcsolat', 'Contact'), href: '#contact' },
+    { label: t('Bemutatkozás', 'Intro'), href: '/' },
+    { label: t('Szolgáltatások', 'Services'), href: '/services' },
+    { label: t('Referenciák', 'References'), href: '/references' },
+    { label: t('Kapcsolat', 'Contact'), href: '/contact' },
   ];
+
+  const isActive = (href: string) => location.pathname === href;
 
   return (
     <motion.header
@@ -23,20 +28,22 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo */}
-        <a href="#hero" className="text-2xl font-extrabold tracking-tight text-foreground">
-          BIND<span className="text-primary">FLOW</span>
-        </a>
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="BINDFLOW" className="h-10 w-auto" />
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              to={item.href}
+              className={`text-sm font-medium transition-colors ${
+                isActive(item.href) ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+              }`}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -71,14 +78,16 @@ const Header = () => {
           className="md:hidden border-t border-border bg-background px-4 pb-4"
         >
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               onClick={() => setMobileOpen(false)}
-              className="block py-3 text-sm font-medium text-muted-foreground hover:text-primary"
+              className={`block py-3 text-sm font-medium ${
+                isActive(item.href) ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+              }`}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <div className="flex items-center gap-2 pt-2 text-sm font-semibold">
             <button
