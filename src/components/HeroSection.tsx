@@ -2,6 +2,7 @@ import { useLang } from '@/contexts/LangContext';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const { t } = useLang();
@@ -57,10 +58,10 @@ const HeroSection = () => {
               className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base font-semibold rounded-full shadow-lg hover:shadow-xl transition-all"
               asChild
             >
-              <a href="#contact">
+              <Link to="/contact">
                 {t('Ingyenes Konzultáció', 'Free Consultation')}
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              </Link>
             </Button>
           </motion.div>
         </motion.div>
