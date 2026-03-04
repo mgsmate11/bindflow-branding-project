@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '@/assets/bindflow-logo.png';
+import BindflowLogo from '@/components/BindflowLogo';
 
 const Header = () => {
   const { lang, setLang, t } = useLang();
@@ -27,12 +27,10 @@ const Header = () => {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border"
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="BINDFLOW" className="h-10 w-auto" />
+        <Link to="/">
+          <BindflowLogo size="sm" />
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
@@ -47,7 +45,6 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Language Switcher */}
         <div className="hidden md:flex items-center gap-1 text-sm font-semibold">
           <button
             onClick={() => setLang('hu')}
@@ -64,13 +61,11 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Toggle */}
         <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
@@ -90,19 +85,9 @@ const Header = () => {
             </Link>
           ))}
           <div className="flex items-center gap-2 pt-2 text-sm font-semibold">
-            <button
-              onClick={() => { setLang('hu'); setMobileOpen(false); }}
-              className={lang === 'hu' ? 'text-primary' : 'text-muted-foreground'}
-            >
-              HU
-            </button>
+            <button onClick={() => { setLang('hu'); setMobileOpen(false); }} className={lang === 'hu' ? 'text-primary' : 'text-muted-foreground'}>HU</button>
             <span className="text-border">|</span>
-            <button
-              onClick={() => { setLang('en'); setMobileOpen(false); }}
-              className={lang === 'en' ? 'text-primary' : 'text-muted-foreground'}
-            >
-              EN
-            </button>
+            <button onClick={() => { setLang('en'); setMobileOpen(false); }} className={lang === 'en' ? 'text-primary' : 'text-muted-foreground'}>EN</button>
           </div>
         </motion.div>
       )}
