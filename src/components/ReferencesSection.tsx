@@ -4,6 +4,7 @@ import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile } from 'lucide-r
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import dataVizImg from '@/assets/data-viz.jpg';
+import umbrollLogo from '@/assets/umbroll-logo.jpg';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -63,6 +64,27 @@ const ReferencesSection = () => {
     },
   ];
 
+  const partners = [
+    {
+      name: 'Umbroll',
+      logo: umbrollLogo,
+      url: 'https://umbroll.hu',
+      description: t('Árnyékolástechnikai megoldások', 'Shading technology solutions'),
+    },
+    {
+      name: 'Fémszer Kft',
+      logo: null,
+      url: 'https://femszer.hu',
+      description: t('Lemezmegmunkálás és acélszerkezetek', 'Sheet metal processing & steel structures'),
+    },
+    {
+      name: 'Benetty Kft',
+      logo: null,
+      url: null,
+      description: t('Üzleti megoldások', 'Business solutions'),
+    },
+  ];
+
   return (
     <>
       {/* Hero banner */}
@@ -85,6 +107,58 @@ const ReferencesSection = () => {
               )}
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="py-16 bg-background border-b border-border">
+        <div className="container mx-auto px-4">
+          <motion.div {...fadeUp} className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-2">
+              {t('Partnereink', 'Our Partners')}
+            </h2>
+            <p className="text-muted-foreground">
+              {t('Akikkel együtt dolgoztunk', 'Companies we have worked with')}
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {partners.map((partner, i) => (
+              <motion.div
+                key={i}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: i * 0.1 }}
+                className="flex flex-col items-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg transition-shadow"
+              >
+                {partner.logo ? (
+                  <div className="w-24 h-24 flex items-center justify-center mb-4">
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                    <span className="text-xl font-extrabold text-primary">
+                      {partner.name.split(' ')[0].substring(0, 2).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+                <h3 className="text-lg font-bold text-foreground mb-1">{partner.name}</h3>
+                <p className="text-sm text-muted-foreground text-center">{partner.description}</p>
+                {partner.url && (
+                  <a
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 text-xs text-primary hover:underline font-medium"
+                  >
+                    {partner.url.replace('https://', '')}
+                  </a>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
