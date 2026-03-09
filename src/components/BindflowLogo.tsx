@@ -9,7 +9,7 @@ const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; siz
       <img
         src={logoImg}
         alt="Bindflow logo"
-        style={{ height: h, filter: 'brightness(1.08) contrast(1.1)' }}
+        style={{ height: h, filter: 'brightness(1.35) contrast(1.15)' }}
         className="object-contain mix-blend-multiply"
       />
     </div>
