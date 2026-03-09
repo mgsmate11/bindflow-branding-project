@@ -1,7 +1,7 @@
-import logoImg from '@/assets/bindflow-logo-full.png';
+import logoImg from '@/assets/bindflow-logo-clean.png';
 
 const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' }) => {
-  const sizes = { sm: 56, md: 72, lg: 100 };
+  const sizes = { sm: 48, md: 64, lg: 140 };
   const h = sizes[size];
 
   return (
