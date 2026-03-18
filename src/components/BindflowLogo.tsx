@@ -21,14 +21,11 @@ const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; siz
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
 
-      // Remove white/near-white pixels by making them transparent
       for (let i = 0; i < data.length; i += 4) {
         const r = data[i];
         const g = data[i + 1];
         const b = data[i + 2];
-        // If pixel is near-white, make it transparent
         if (r > 230 && g > 230 && b > 230) {
-          // Gradual transparency: whiter = more transparent
           const whiteness = Math.min(r, g, b);
           const alpha = whiteness > 245 ? 0 : Math.round((245 - whiteness) * (255 / 15));
           data[i + 3] = alpha;
@@ -42,20 +39,21 @@ const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; siz
   }, []);
 
   return (
-    <div className={`flex items-center justify-center ${className}`}>
+    <div className={`flex items-center ${className}`}>
       <canvas ref={canvasRef} className="hidden" />
       {dataUrl ? (
         <img
           src={dataUrl}
           alt="Bindflow logo"
-          style={{ height: h, width: '100%', objectFit: 'contain' }}
+          style={{ height: h }}
+          className="object-contain"
         />
       ) : (
         <img
           src={logoImg}
           alt="Bindflow logo"
-          style={{ height: h, width: '100%', objectFit: 'contain' }}
-          className="mix-blend-multiply"
+          style={{ height: h }}
+          className="object-contain mix-blend-multiply"
         />
       )}
     </div>
