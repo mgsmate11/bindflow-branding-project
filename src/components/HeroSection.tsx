@@ -49,13 +49,13 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-dark">
-        <div className="absolute inset-0 dot-pattern opacity-40" />
-        <HeroParticles />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+        <div className="absolute inset-0 dot-pattern opacity-20" />
 
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/8 blur-3xl animate-float" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl animate-float" />
           <div className="absolute bottom-1/3 left-[15%] w-64 h-64 rounded-full bg-primary/5 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+        </div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -69,19 +69,16 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex flex-col items-center justify-center mb-8 gap-3"
+              className="flex flex-col items-center justify-center mb-8"
             >
-              <BindflowLogo size="lg" className="w-full max-w-[420px]" />
-              <span className="text-4xl sm:text-5xl font-extrabold tracking-widest uppercase w-full max-w-[420px] text-center">
-                <span className="text-primary">Bind</span><span style={{ color: '#7DD3F8' }}>flow</span>
-              </span>
+              <BindflowLogo size="lg" className="w-full max-w-[520px]" />
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-sm font-medium text-primary-foreground/70"
+              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-sm font-medium text-foreground/70"
             >
               {t('AI Megoldások Vállalatoknak', 'AI Solutions for Enterprises')}
             </motion.div>
@@ -96,7 +93,7 @@ const HeroSection = () => {
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg sm:text-xl text-foreground/60 max-w-2xl mx-auto mb-10 leading-relaxed">
               {t(
                 'A mesterséges intelligencia nem a jövő, hanem a jelen versenyelőnye. Segítünk, hogy a technológia ne teher, hanem a leghatékonyabb munkatársad legyen.',
                 "AI is not the future; it's today's competitive edge. We help ensure that technology isn't a burden, but your most efficient team member."
@@ -110,7 +107,7 @@ const HeroSection = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6 text-base font-semibold rounded-full border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Button size="lg" variant="outline" className="px-8 py-6 text-base font-semibold rounded-full border-foreground/20 text-foreground hover:bg-foreground/10" asChild>
                 <Link to="/services">
                   {t('Szolgáltatásaink', 'Our Services')}
                 </Link>
