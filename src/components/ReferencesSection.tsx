@@ -1,6 +1,6 @@
 import { useLang } from '@/contexts/LangContext';
 import { motion } from 'framer-motion';
-import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile } from 'lucide-react';
+import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import dataVizImg from '@/assets/data-viz.jpg';
@@ -13,6 +13,15 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
+const PartnerLogo = ({ name, color }: { name: string; color: string }) => (
+  <div className={`w-24 h-24 rounded-2xl flex items-center justify-center mb-4 ${color}`}>
+    <div className="text-center">
+      <Building2 className="w-8 h-8 mx-auto mb-1 text-primary" />
+      <span className="text-xs font-bold text-primary leading-none">{name}</span>
+    </div>
+  </div>
+);
+
 const ReferencesSection = () => {
   const { t } = useLang();
 
@@ -22,10 +31,7 @@ const ReferencesSection = () => {
       stat: '30%',
       statLabel: t('hatékonyságnövekedés', 'efficiency boost'),
       title: t('Pénzügyi tanácsadó cég', 'Financial consultancy firm'),
-      quote: t(
-        '"30% hatékonyságnövekedés egyetlen negyedév alatt."',
-        '"30% efficiency boost in a single quarter."'
-      ),
+      quote: t('"30% hatékonyságnövekedés egyetlen negyedév alatt."', '"30% efficiency boost in a single quarter."'),
       description: t(
         'Automatizáltuk az adatbevitelt és egy egyedi AI asszisztenst állítottunk hadrendbe. Eredmény: felszabadult munkaidő és elégedettebb ügyfelek.',
         'We automated data entry and deployed a custom AI assistant. Result: reclaimed hours and satisfied clients.'
@@ -37,10 +43,7 @@ const ReferencesSection = () => {
       stat: '15h',
       statLabel: t('megtakarított óra/hét', 'hours saved/week'),
       title: t('E-commerce vállalkozás', 'E-commerce business'),
-      quote: t(
-        '"Az ügyfélszolgálati chatbotunk átvette a kérdések 70%-át."',
-        '"Our customer service chatbot now handles 70% of inquiries."'
-      ),
+      quote: t('"Az ügyfélszolgálati chatbotunk átvette a kérdések 70%-át."', '"Our customer service chatbot now handles 70% of inquiries."'),
       description: t(
         'Egy egyedi fejlesztésű AI chatbot segítségével automatizáltuk az ügyfélkérések kezelését, csökkentve a válaszidőt és a terhelést.',
         'With a custom AI chatbot, we automated customer request handling, reducing response time and workload.'
@@ -52,10 +55,7 @@ const ReferencesSection = () => {
       stat: '95%',
       statLabel: t('ügyfél elégedettség', 'client satisfaction'),
       title: t('Logisztikai cég', 'Logistics company'),
-      quote: t(
-        '"A Bindflow segítségével teljesen digitalizáltuk a belső folyamatainkat."',
-        '"With Bindflow\'s help, we fully digitized our internal processes."'
-      ),
+      quote: t('"A Bindflow segítségével teljesen digitalizáltuk a belső folyamatainkat."', '"With Bindflow\'s help, we fully digitized our internal processes."'),
       description: t(
         'No-code automatizációval összekötöttük a raktárkezelő, számlázó és CRM rendszereket. Az adatok immár valós időben szinkronizálódnak.',
         'With no-code automation, we connected warehouse management, invoicing, and CRM systems. Data now syncs in real-time.'
@@ -88,7 +88,7 @@ const ReferencesSection = () => {
   return (
     <>
       {/* Hero banner */}
-      <section className="py-24 bg-hero-glow relative overflow-hidden">
+      <section className="py-20 bg-hero-glow relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
         </div>
@@ -102,8 +102,8 @@ const ReferencesSection = () => {
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               {t(
-                'Ügyfeleink átlagosan 30%-os hatékonyságnövekedést tapasztalnak az első negyedévben. Íme néhány esettanulmány.',
-                'Our clients experience an average 30% efficiency boost in the first quarter. Here are some case studies.'
+                'Ügyfeleink átlagosan 30%-os hatékonyságnövekedést tapasztalnak az első negyedévben.',
+                'Our clients experience an average 30% efficiency boost in the first quarter.'
               )}
             </p>
           </motion.div>
@@ -111,9 +111,9 @@ const ReferencesSection = () => {
       </section>
 
       {/* Partners */}
-      <section className="py-16 bg-background border-b border-border">
+      <section className="py-14 bg-background border-b border-border">
         <div className="container mx-auto px-4">
-          <motion.div {...fadeUp} className="text-center mb-12">
+          <motion.div {...fadeUp} className="text-center mb-10">
             <h2 className="text-2xl font-bold text-foreground mb-2">
               {t('Partnereink', 'Our Partners')}
             </h2>
@@ -121,13 +121,13 @@ const ReferencesSection = () => {
               {t('Akikkel együtt dolgoztunk', 'Companies we have worked with')}
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {partners.map((partner, i) => (
               <motion.div
                 key={i}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: i * 0.1 }}
-                className="flex flex-col items-center p-8 rounded-2xl border border-border bg-card hover:shadow-lg transition-shadow"
+                className="flex flex-col items-center p-8 rounded-2xl border border-border bg-card card-hover"
               >
                 {partner.logo ? (
                   <div className="w-24 h-24 flex items-center justify-center mb-4">
@@ -138,11 +138,7 @@ const ReferencesSection = () => {
                     />
                   </div>
                 ) : (
-                  <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                    <span className="text-xl font-extrabold text-primary">
-                      {partner.name.split(' ')[0].substring(0, 2).toUpperCase()}
-                    </span>
-                  </div>
+                  <PartnerLogo name={partner.name} color="bg-primary/10" />
                 )}
                 <h3 className="text-lg font-bold text-foreground mb-1">{partner.name}</h3>
                 <p className="text-sm text-muted-foreground text-center">{partner.description}</p>
@@ -163,11 +159,11 @@ const ReferencesSection = () => {
       </section>
 
       {/* Case Studies */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 space-y-12">
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 space-y-8">
           {caseStudies.map((cs, i) => (
             <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.15 }}
-              className="relative p-8 sm:p-10 rounded-2xl border border-border bg-card overflow-hidden"
+              className="relative p-8 sm:p-10 rounded-2xl border border-border bg-card overflow-hidden card-hover"
             >
               <Quote className="absolute top-6 right-6 w-10 h-10 text-accent/10" />
               <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -182,47 +178,42 @@ const ReferencesSection = () => {
                 </div>
                 <div className="flex-1">
                   <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-2">{cs.title}</div>
-                  <blockquote className="text-xl font-semibold text-foreground mb-3 leading-snug">
-                    {cs.quote}
-                  </blockquote>
+                  <blockquote className="text-xl font-semibold text-foreground mb-3 leading-snug">{cs.quote}</blockquote>
                   <p className="text-muted-foreground leading-relaxed mb-4">{cs.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {cs.tags.map((tag, ti) => (
-                      <span key={ti} className="px-3 py-1 rounded-full bg-secondary text-xs font-medium text-foreground/70">
-                        {tag}
-                      </span>
+                      <span key={ti} className="px-3 py-1 rounded-full bg-secondary text-xs font-medium text-foreground/70">{tag}</span>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Visual */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeUp}>
               <h2 className="text-3xl font-bold text-foreground mb-6">
                 {t('Mérjük, ami számít', 'We measure what matters')}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-8">
                 {t(
-                  'Minden projektünkhöz részletes KPI-kat definiálunk és transzparens riportokat készítünk, hogy az eredmények ne csak érezhetőek, hanem bizonyíthatóak is legyenek.',
-                  "For every project, we define detailed KPIs and create transparent reports, so results aren't just felt—they're proven."
+                  'Minden projektünkhöz részletes KPI-kat definiálunk és transzparens riportokat készítünk.',
+                  "For every project, we define detailed KPIs and create transparent reports."
                 )}
               </p>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-4">
                 {[
                   { n: '50+', l: t('Projekt', 'Projects') },
                   { n: '12+', l: t('Iparág', 'Industries') },
                   { n: '98%', l: t('Elégedettség', 'Satisfaction') },
                   { n: '3x', l: t('Átlagos ROI', 'Average ROI') },
                 ].map((s, si) => (
-                  <div key={si} className="p-4 rounded-xl border border-border bg-card text-center">
+                  <div key={si} className="p-4 rounded-xl border border-border bg-card text-center card-hover">
                     <div className="text-2xl font-extrabold text-primary">{s.n}</div>
                     <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
                   </div>
@@ -230,8 +221,8 @@ const ReferencesSection = () => {
               </div>
             </motion.div>
             <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }}>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border border-border">
-                <img src={dataVizImg} alt={t('Dashboard', 'Dashboard')} className="w-full h-auto object-cover" />
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-border relative">
+                <img src={dataVizImg} alt="Bindflow Dashboard" className="w-full h-auto object-cover" />
               </div>
             </motion.div>
           </div>
@@ -239,7 +230,7 @@ const ReferencesSection = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4 text-center">
           <motion.div {...fadeUp}>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">

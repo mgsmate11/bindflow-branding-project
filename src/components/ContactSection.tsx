@@ -30,7 +30,7 @@ const ContactSection = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'janos.kovacs@bindflow.hu', href: 'mailto:janos.kovacs@bindflow.hu' },
+    { icon: Mail, label: 'hello@bindflow.hu', href: 'mailto:hello@bindflow.hu' },
     { icon: Phone, label: '+36 30 123 4567', href: 'tel:+36301234567' },
     { icon: Globe, label: 'www.bindflow.hu', href: 'https://www.bindflow.hu' },
     { icon: Linkedin, label: 'bindflow-solutions', href: 'https://linkedin.com/company/bindflow-solutions' },
@@ -39,7 +39,7 @@ const ContactSection = () => {
   return (
     <>
       {/* Hero banner */}
-      <section className="py-24 bg-hero-glow relative overflow-hidden">
+      <section className="py-20 bg-hero-glow relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/3 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
         </div>
@@ -62,11 +62,11 @@ const ContactSection = () => {
       </section>
 
       {/* Contact Grid */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Left - Info */}
-            <motion.div {...fadeUp} className="space-y-10">
+            <motion.div {...fadeUp} className="space-y-8">
               <div>
                 <BindflowLogo size="md" className="mb-6" />
                 <h3 className="text-xl font-bold text-foreground mb-1">
@@ -100,7 +100,7 @@ const ContactSection = () => {
                   <MapPin className="w-5 h-5 text-accent" />
                   <div>
                     <div className="text-sm font-semibold text-foreground">{t('Iroda', 'Office')}</div>
-                    <div className="text-xs text-muted-foreground">Budapest, Magyarország</div>
+                    <div className="text-xs text-muted-foreground">1051 Budapest, Október 6. utca 12.</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -170,9 +170,9 @@ const ContactSection = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4 max-w-3xl">
-          <motion.div {...fadeUp} className="text-center mb-16">
+          <motion.div {...fadeUp} className="text-center mb-12">
             <span className="inline-block mb-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold tracking-wider uppercase">
               {t('GYIK', 'FAQ')}
             </span>
@@ -201,7 +201,7 @@ const ContactSection = () => {
               },
             ].map((faq, i) => (
               <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }}
-                className="p-6 rounded-2xl border border-border bg-card"
+                className="p-6 rounded-2xl border border-border bg-card card-hover"
               >
                 <h3 className="text-base font-semibold text-foreground mb-2">{faq.q}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>

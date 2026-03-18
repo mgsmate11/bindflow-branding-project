@@ -4,7 +4,6 @@ import { ArrowRight, CheckCircle, Lightbulb, Target, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import BindflowLogo from '@/components/BindflowLogo';
-import heroBg from '@/assets/hero-bg.jpg';
 import teamImg from '@/assets/team-collab.jpg';
 
 const fadeUp = {
@@ -13,6 +12,23 @@ const fadeUp = {
   viewport: { once: true },
   transition: { duration: 0.6 },
 };
+
+const HeroParticles = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {Array.from({ length: 20 }).map((_, i) => (
+      <div
+        key={i}
+        className="absolute w-1 h-1 rounded-full bg-accent/40"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animation: `particle-float ${4 + Math.random() * 4}s ease-in-out infinite`,
+          animationDelay: `${Math.random() * 4}s`,
+        }}
+      />
+    ))}
+  </div>
+);
 
 const HeroSection = () => {
   const { t } = useLang();
@@ -33,15 +49,13 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-hero-glow" />
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-dark">
+        <div className="absolute inset-0 dot-pattern opacity-40" />
+        <HeroParticles />
 
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl animate-float" />
-          <div className="absolute bottom-1/3 left-[15%] w-64 h-64 rounded-full bg-accent/8 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/8 blur-3xl animate-float" />
+          <div className="absolute bottom-1/3 left-[15%] w-64 h-64 rounded-full bg-primary/5 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -49,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -64,16 +78,22 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/5 text-sm font-medium text-muted-foreground"
+              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-sm font-medium text-primary-foreground/70"
             >
               {t('AI Megoldások Vállalatoknak', 'AI Solutions for Enterprises')}
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-gradient-hero mb-6">
-              {t('Intelligens folyamatok, emberi léptékkel.', 'Intelligent workflows on a human scale.')}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
+              <span className="text-gradient-animated">
+                {t('Intelligens folyamatok,', 'Intelligent workflows,')}
+              </span>
+              <br />
+              <span className="text-primary-foreground">
+                {t('emberi léptékkel.', 'on a human scale.')}
+              </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg sm:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10 leading-relaxed">
               {t(
                 'A mesterséges intelligencia nem a jövő, hanem a jelen versenyelőnye. Segítünk, hogy a technológia ne teher, hanem a leghatékonyabb munkatársad legyen.',
                 "AI is not the future; it's today's competitive edge. We help ensure that technology isn't a burden, but your most efficient team member."
@@ -81,13 +101,13 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base font-semibold rounded-full shadow-lg" asChild>
+              <Button size="lg" className="pulse-cta bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base font-semibold rounded-full shadow-lg" asChild>
                 <Link to="/contact">
                   {t('Ingyenes Konzultáció', 'Free Consultation')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6 text-base font-semibold rounded-full border-border hover:border-primary/30" asChild>
+              <Button size="lg" variant="outline" className="px-8 py-6 text-base font-semibold rounded-full border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10" asChild>
                 <Link to="/services">
                   {t('Szolgáltatásaink', 'Our Services')}
                 </Link>
@@ -98,7 +118,7 @@ const HeroSection = () => {
       </section>
 
       {/* Stats Bar */}
-      <section className="py-12 bg-secondary/50 border-y border-border">
+      <section className="py-10 bg-secondary/50 border-y border-border">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -112,9 +132,9 @@ const HeroSection = () => {
       </section>
 
       {/* About / Values */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeUp}>
               <span className="inline-block mb-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold tracking-wider uppercase">
                 {t('Rólunk', 'About Us')}
@@ -159,9 +179,9 @@ const HeroSection = () => {
       </section>
 
       {/* Values */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <motion.div {...fadeUp} className="text-center mb-16">
+          <motion.div {...fadeUp} className="text-center mb-12">
             <span className="inline-block mb-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold tracking-wider uppercase">
               {t('Értékeink', 'Our Values')}
             </span>
@@ -173,7 +193,7 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((v, i) => (
               <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.15 }}
-                className="p-8 rounded-2xl border border-border bg-card text-center group hover:border-accent/30 transition-all"
+                className="p-8 rounded-2xl border border-border bg-card text-center group hover:border-accent/30 card-hover"
               >
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/15 transition-colors">
                   <v.icon className="w-8 h-8 text-primary" />
@@ -187,7 +207,7 @@ const HeroSection = () => {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-20 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center p-12 rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/5 to-transparent relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
