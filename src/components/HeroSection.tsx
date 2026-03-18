@@ -39,23 +39,16 @@ const HeroSection = () => {
     { icon: Users, title: t('Partnerség', 'Partnership'), desc: t('Nem szállítók, hanem stratégiai partnerek vagyunk.', "We're not vendors, we're strategic partners.") },
   ];
 
-  const stats = [
-    { num: '50+', label: t('Sikeres projekt', 'Successful projects') },
-    { num: '30%', label: t('Átlagos hatékonyságnövekedés', 'Average efficiency boost') },
-    { num: '24/7', label: t('AI asszisztens üzemidő', 'AI assistant uptime') },
-    { num: '98%', label: t('Ügyfél elégedettség', 'Client satisfaction') },
-  ];
-
   return (
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-        <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="absolute inset-0 dot-pattern opacity-40" />
+        <HeroParticles />
 
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl animate-float" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/8 blur-3xl animate-float" />
           <div className="absolute bottom-1/3 left-[15%] w-64 h-64 rounded-full bg-primary/5 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
-        </div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -69,9 +62,9 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex flex-col items-center justify-center mb-8"
+              className="flex justify-center mb-8"
             >
-              <BindflowLogo size="lg" className="w-full max-w-[520px]" />
+              <BindflowLogo size="lg" />
             </motion.div>
 
             <motion.div
@@ -117,7 +110,7 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* About / Values */}
+      {/* About / Rólunk */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
