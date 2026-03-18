@@ -117,20 +117,6 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="py-10 bg-secondary/50 border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
-              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }} className="text-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-primary mb-1">{stat.num}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* About / Values */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
