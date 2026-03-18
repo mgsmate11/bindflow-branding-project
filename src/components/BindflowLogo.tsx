@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import logoImg from '@/assets/bindflow-logo-clean.png';
 
 const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' }) => {
-  const sizes = { sm: 48, md: 64, lg: 140 };
+  const sizes = { sm: 48, md: 64, lg: 200 };
   const h = sizes[size];
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dataUrl, setDataUrl] = useState<string>('');
@@ -42,21 +42,20 @@ const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; siz
   }, []);
 
   return (
-    <div className={`flex items-center ${className}`}>
+    <div className={`flex items-center justify-center ${className}`}>
       <canvas ref={canvasRef} className="hidden" />
       {dataUrl ? (
         <img
           src={dataUrl}
           alt="Bindflow logo"
-          style={{ height: h }}
-          className="object-contain"
+          style={{ height: h, width: '100%', objectFit: 'contain' }}
         />
       ) : (
         <img
           src={logoImg}
           alt="Bindflow logo"
-          style={{ height: h }}
-          className="object-contain mix-blend-multiply"
+          style={{ height: h, width: '100%', objectFit: 'contain' }}
+          className="mix-blend-multiply"
         />
       )}
     </div>
