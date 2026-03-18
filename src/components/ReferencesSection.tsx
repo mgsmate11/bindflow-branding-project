@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import dataVizImg from '@/assets/data-viz.jpg';
 import umbrollLogo from '@/assets/umbroll-logo.jpg';
 
 const fadeUp = {
@@ -189,43 +188,6 @@ const ReferencesSection = () => {
               </div>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* Visual */}
-      <section className="py-16 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeUp}>
-              <h2 className="text-3xl font-bold text-foreground mb-6">
-                {t('Mérjük, ami számít', 'We measure what matters')}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                {t(
-                  'Minden projektünkhöz részletes KPI-kat definiálunk és transzparens riportokat készítünk.',
-                  "For every project, we define detailed KPIs and create transparent reports."
-                )}
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { n: '50+', l: t('Projekt', 'Projects') },
-                  { n: '12+', l: t('Iparág', 'Industries') },
-                  { n: '98%', l: t('Elégedettség', 'Satisfaction') },
-                  { n: '3x', l: t('Átlagos ROI', 'Average ROI') },
-                ].map((s, si) => (
-                  <div key={si} className="p-4 rounded-xl border border-border bg-card text-center card-hover">
-                    <div className="text-2xl font-extrabold text-primary">{s.n}</div>
-                    <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }}>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border border-border relative">
-                <img src={dataVizImg} alt="Bindflow Dashboard" className="w-full h-auto object-cover" />
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
 
