@@ -1,6 +1,7 @@
 import { LangProvider } from '@/contexts/LangContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import FloatingContactButton from '@/components/FloatingContactButton';
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
@@ -12,6 +13,7 @@ const Layout = () => {
           <Outlet />
         </main>
         <Footer />
+        <FloatingContactButton />
       </div>
     </LangProvider>
   );

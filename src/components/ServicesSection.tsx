@@ -79,7 +79,7 @@ const ServicesSection = () => {
   return (
     <>
       {/* Hero banner */}
-      <section className="py-24 bg-hero-glow relative overflow-hidden">
+      <section className="py-20 bg-hero-glow relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
         </div>
@@ -102,15 +102,15 @@ const ServicesSection = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: index * 0.1 }}
-                className="group relative p-8 rounded-2xl border border-border bg-card hover:border-accent/40 transition-all duration-300"
+                className="group relative p-8 rounded-2xl border border-border bg-card hover:border-accent/40 card-hover"
               >
                 <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex items-start gap-5 mb-6">
@@ -137,9 +137,9 @@ const ServicesSection = () => {
       </section>
 
       {/* Visual showcase */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <motion.div {...fadeUp} className="text-center mb-16">
+          <motion.div {...fadeUp} className="text-center mb-12">
             <span className="inline-block mb-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold tracking-wider uppercase">
               {t('Megoldásaink akcióban', 'Our Solutions in Action')}
             </span>
@@ -148,14 +148,14 @@ const ServicesSection = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { img: dataVizImg, title: t('Adatvezérelt döntések', 'Data-driven decisions'), desc: t('Valós idejű dashboardok és elemzések, amelyek átláthatóvá teszik az üzleti folyamatokat.', 'Real-time dashboards and analytics that make business processes transparent.') },
               { img: aiAssistantImg, title: t('Intelligens asszisztensek', 'Intelligent assistants'), desc: t('AI-alapú chatbotok, amelyek a céged hangján kommunikálnak az ügyfelekkel.', 'AI-powered chatbots that communicate with customers in your brand voice.') },
               { img: automationImg, title: t('Zökkenőmentes automatizáció', 'Seamless automation'), desc: t('Rendszerek összekapcsolása és repetitív feladatok kiváltása emberi beavatkozás nélkül.', 'Connecting systems and eliminating repetitive tasks without human intervention.') },
             ].map((item, i) => (
               <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.15 }}
-                className="rounded-2xl overflow-hidden border border-border bg-card group"
+                className="rounded-2xl overflow-hidden border border-border bg-card group card-hover"
               >
                 <div className="aspect-video overflow-hidden">
                   <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -171,9 +171,9 @@ const ServicesSection = () => {
       </section>
 
       {/* Process */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <motion.div {...fadeUp} className="text-center mb-16">
+          <motion.div {...fadeUp} className="text-center mb-12">
             <span className="inline-block mb-3 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold tracking-wider uppercase">
               {t('Folyamatunk', 'Our Process')}
             </span>
@@ -190,7 +190,7 @@ const ServicesSection = () => {
               { step: '04', title: t('Optimalizáció', 'Optimization'), desc: t('Folyamatos monitoring és fejlesztés a maximális eredmény érdekében.', 'Continuous monitoring and improvement for maximum results.') },
             ].map((item, i) => (
               <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }}
-                className="relative p-6 rounded-2xl border border-border bg-card text-center"
+                className="relative p-6 rounded-2xl border border-border bg-card text-center card-hover"
               >
                 <div className="text-5xl font-extrabold text-primary/10 mb-3">{item.step}</div>
                 <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
@@ -203,7 +203,7 @@ const ServicesSection = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4 text-center">
           <motion.div {...fadeUp}>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
