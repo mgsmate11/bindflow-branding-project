@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import umbrollLogo from '@/assets/Umbroll_image';
+import umbrollLogo from '@/assets/umbroll-logo.jpg';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
