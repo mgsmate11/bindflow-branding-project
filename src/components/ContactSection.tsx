@@ -80,8 +80,6 @@ const ContactSection = () => {
 
             {/* Left - Info */}
             <motion.div {...fadeUp} className="space-y-6">
-              <BindflowLogo size="md" className="mb-2" />
-
               {contacts.map((person, i) => (
                 <div key={i} className="p-6 rounded-2xl border border-border bg-card space-y-4">
                   <div>
@@ -111,7 +109,7 @@ const ContactSection = () => {
                   <MapPin className="w-5 h-5 text-accent" />
                   <div>
                     <div className="text-sm font-semibold text-foreground">{t('Iroda', 'Office')}</div>
-                    <div className="text-xs text-muted-foreground">1051 Budapest, Október 6. utca 12.</div>
+                    <div className="text-xs text-muted-foreground">2600 Vác, Althann Mihály Frigyes u. 9.</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
