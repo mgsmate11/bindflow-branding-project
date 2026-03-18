@@ -69,9 +69,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex justify-center mb-8"
+              className="flex flex-col items-center justify-center mb-8 gap-3"
             >
               <BindflowLogo size="lg" />
+              <span className="text-4xl sm:text-5xl font-extrabold tracking-widest text-primary-foreground uppercase">BINDFLOW</span>
             </motion.div>
 
             <motion.div
@@ -84,11 +85,11 @@ const HeroSection = () => {
             </motion.div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-              <span className="text-gradient-animated">
+              <span className="text-primary">
                 {t('Intelligens folyamatok,', 'Intelligent workflows,')}
               </span>
               <br />
-              <span className="text-primary-foreground">
+              <span className="text-primary">
                 {t('emberi léptékkel.', 'on a human scale.')}
               </span>
             </h1>
