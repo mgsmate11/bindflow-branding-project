@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, Globe, Send, MapPin, Clock, Linkedin } from 'lucide-react';
+import { Mail, Phone, Send, MapPin, Clock } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import BindflowLogo from '@/components/BindflowLogo';
@@ -29,11 +29,23 @@ const ContactSection = () => {
     setFormData({ name: '', email: '', company: '', message: '' });
   };
 
-  const contactInfo = [
-    { icon: Mail, label: 'hello@bindflow.hu', href: 'mailto:hello@bindflow.hu' },
-    { icon: Phone, label: '+36 30 123 4567', href: 'tel:+36301234567' },
-    { icon: Globe, label: 'www.bindflow.hu', href: 'https://www.bindflow.hu' },
-    { icon: Linkedin, label: 'bindflow-solutions', href: 'https://linkedin.com/company/bindflow-solutions' },
+  const contacts = [
+    {
+      name: 'Magos Máté',
+      title: t('Ügyvezető igazgató', 'Managing Director'),
+      info: [
+        { icon: Mail, label: 'magos.mate@icloud.com', href: 'mailto:magos.mate@icloud.com' },
+        { icon: Phone, label: '06 20 452 4280', href: 'tel:+36204524280' },
+      ],
+    },
+    {
+      name: 'Varga Bence',
+      title: t('Ügyvezető igazgató', 'Managing Director'),
+      info: [
+        { icon: Mail, label: 'vargabence0514@gmail.com', href: 'mailto:vargabence0514@gmail.com' },
+        { icon: Phone, label: '06 30 493 6507', href: 'tel:+36304936507' },
+      ],
+    },
   ];
 
   return (
@@ -65,34 +77,33 @@ const ContactSection = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* Left - Info */}
-            <motion.div {...fadeUp} className="space-y-8">
-              <div>
-                <BindflowLogo size="md" className="mb-6" />
-                <h3 className="text-xl font-bold text-foreground mb-1">
-                  {t('Kovács János', 'János Kovács')}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-6">
-                  {t('Alapító & Vezérigazgató', 'Founder & CEO')}
-                </p>
 
-                <div className="space-y-4">
-                  {contactInfo.map((item, i) => (
-                    <a
-                      key={i}
-                      href={item.href}
-                      target={item.href.startsWith('http') ? '_blank' : undefined}
-                      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <item.icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium">{item.label}</span>
-                    </a>
-                  ))}
+            {/* Left - Info */}
+            <motion.div {...fadeUp} className="space-y-6">
+              <BindflowLogo size="md" className="mb-2" />
+
+              {contacts.map((person, i) => (
+                <div key={i} className="p-6 rounded-2xl border border-border bg-card space-y-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground">{person.name}</h3>
+                    <p className="text-sm text-muted-foreground">{person.title}</p>
+                  </div>
+                  <div className="space-y-3">
+                    {person.info.map((item, j) => (
+                      <a
+                        key={j}
+                        href={item.href}
+                        className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
+                      >
+                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <item.icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ))}
 
               {/* Office info */}
               <div className="p-6 rounded-2xl border border-border bg-card space-y-4">
