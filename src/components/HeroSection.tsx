@@ -71,8 +71,10 @@ const HeroSection = () => {
               transition={{ delay: 0.1, duration: 0.5 }}
               className="flex flex-col items-center justify-center mb-8 gap-3"
             >
-              <BindflowLogo size="lg" />
-              <span className="text-4xl sm:text-5xl font-extrabold tracking-widest text-primary-foreground uppercase">BINDFLOW</span>
+              <BindflowLogo size="lg" className="w-full max-w-[420px]" />
+              <span className="text-4xl sm:text-5xl font-extrabold tracking-widest uppercase w-full max-w-[420px] text-center">
+                <span className="text-primary">Bind</span><span style={{ color: '#7DD3F8' }}>flow</span>
+              </span>
             </motion.div>
 
             <motion.div
