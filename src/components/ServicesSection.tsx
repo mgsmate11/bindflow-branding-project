@@ -1,6 +1,6 @@
 import { useLang } from '@/contexts/LangContext';
 import { motion } from 'framer-motion';
-import { Brain, GraduationCap, MessageSquare, Workflow, ArrowRight, Check } from 'lucide-react';
+import { Brain, MessageSquare, Workflow, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import aiAssistantImg from '@/assets/ai-assistant.jpg';
@@ -30,20 +30,6 @@ const ServicesSection = () => {
         t('AI érettségi felmérés', 'AI readiness assessment'),
         t('ROI elemzés és prioritizálás', 'ROI analysis and prioritization'),
         t('Implementációs ütemterv', 'Implementation roadmap'),
-      ],
-    },
-    {
-      icon: GraduationCap,
-      title: t('AI Oktatás', 'AI Training'),
-      description: t(
-        'Gyakorlatias workshopok. Megtanítjuk csapatodnak a Prompt Engineering alapjait és a leghatékonyabb AI eszközök használatát.',
-        'Practical workshops. We teach your team the fundamentals of Prompt Engineering and how to use effective AI tools.'
-      ),
-      features: [
-        t('Prompt Engineering mesterkurzus', 'Prompt Engineering masterclass'),
-        t('ChatGPT & Claude haladó használat', 'Advanced ChatGPT & Claude usage'),
-        t('Iparág-specifikus esettanulmányok', 'Industry-specific case studies'),
-        t('Hands-on gyakorlatok', 'Hands-on exercises'),
       ],
     },
     {
