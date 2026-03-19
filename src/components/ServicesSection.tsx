@@ -50,11 +50,11 @@ const ServicesSection = () => {
       icon: Workflow,
       title: t('Automatizáció', 'Automation'),
       description: t(
-        '"No-code" és egyedi megoldások (Zapier, Make), amelyek összekötik szoftvereidet, emberi beavatkozás nélkül elvégezve az ismétlődő feladatokat.',
+        '"No-code" és egyedi megoldások (Zapier, n8n), amelyek összekötik szoftvereidet, emberi beavatkozás nélkül elvégezve az ismétlődő feladatokat.',
         'No-code and custom solutions that connect your software, performing repetitive tasks without human intervention.'
       ),
       features: [
-        t('Zapier & Make integrációk', 'Zapier & Make integrations'),
+        t('Zapier & n8n integrációk', 'Zapier & n8n integrations'),
         t('Email és dokumentum automatizálás', 'Email & document automation'),
         t('Adatszinkronizáció rendszerek közt', 'Data sync between systems'),
         t('Egyedi API fejlesztés', 'Custom API development'),
