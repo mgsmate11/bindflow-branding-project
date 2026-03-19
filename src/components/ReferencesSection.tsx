@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import umbrollLogo from '@/assets/umbroll-logo.jpg';
+import umbrollLogo from '@/assets/umbroll-logo.png';
+import femszerLogo from '@/assets/femszer-logo.png';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -72,7 +73,7 @@ const ReferencesSection = () => {
     },
     {
       name: 'Fémszer Kft',
-      logo: null,
+      logo: femszerLogo,
       url: 'https://femszer.hu',
       description: t('Lemezmegmunkálás és acélszerkezetek', 'Sheet metal processing & steel structures'),
     },
