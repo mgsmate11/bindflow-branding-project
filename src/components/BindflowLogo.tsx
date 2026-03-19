@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import logoImg from '@/assets/bindflow-logo-clean.png';
 
 const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' }) => {
-  const sizes = { sm: 48, md: 64, lg: 280 };
+  const sizes = { sm: 48, md: 64, lg: 500 };
   const h = sizes[size];
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dataUrl, setDataUrl] = useState<string>('');
