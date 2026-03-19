@@ -42,7 +42,7 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-background py-8">
         <div className="absolute inset-0 dot-pattern opacity-40" />
         <HeroParticles />
 
@@ -62,7 +62,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex justify-center mb-8"
+              className="flex justify-center mb-2"
             >
               <BindflowLogo size="lg" />
             </motion.div>
@@ -71,12 +71,12 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-block mb-6 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-sm font-medium text-foreground/70"
+              className="inline-block mb-4 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-sm font-medium text-foreground/70"
             >
               {t('AI Megoldások Vállalatoknak', 'AI Solutions for Enterprises')}
             </motion.div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
               <span className="text-primary">
                 {t('Intelligens folyamatok,', 'Intelligent workflows,')}
               </span>
