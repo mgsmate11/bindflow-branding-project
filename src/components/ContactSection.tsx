@@ -20,13 +20,32 @@ const ContactSection = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: t('Üzenet elküldve!', 'Message sent!'),
-      description: t('Hamarosan felvesszük Önnel a kapcsolatot.', 'We will get back to you shortly.'),
-    });
-    setFormData({ name: '', email: '', company: '', message: '' });
+    try {
+      const response = await fetch('https://formspree.io/f/mkoqyggr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        toast({
+          title: t('Üzenet elküldve!', 'Message sent!'),
+          description: t('Hamarosan felvesszük Önnel a kapcsolatot.', 'We will get back to you shortly.'),
+        });
+        setFormData({ name: '', email: '', company: '', message: '' });
+      } else {
+        toast({
+          title: t('Hiba történt!', 'Something went wrong!'),
+          description: t('Kérjük próbáld újra később.', 'Please try again later.'),
+        });
+      }
+    } catch {
+      toast({
+        title: t('Hiba történt!', 'Something went wrong!'),
+        description: t('Kérjük próbáld újra később.', 'Please try again later.'),
+      });
+    }
   };
 
   const contacts = [
