@@ -123,8 +123,8 @@ const HeroSection = () => {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 {t(
-                  'A Bindflow csapata több éves tapasztalattal rendelkezik az AI tanácsadás, oktatás és automatizáció terén. Célunk, hogy a legmodernebb technológiákat emberi léptékkel, érthetően és hatékonyan adjuk át ügyfeleinknek.',
-                  'The Bindflow team has years of experience in AI consulting, training, and automation. Our goal is to deliver cutting-edge technologies at a human scale—understandably and efficiently.'
+                  'A Bindflow csapata az AI tanácsadás, automatizáció és digitális transzformáció területén nyújt átfogó megoldásokat. Célunk, hogy a legmodernebb technológiákat emberi léptékkel, érthetően és hatékonyan adjuk át ügyfeleinknek.',
+                  'The Bindflow team provides comprehensive solutions in AI consulting, automation and digital transformation. Our goal is to deliver cutting-edge technologies at a human scale—understandably and efficiently.'
                 )}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
