@@ -3,8 +3,8 @@ import useSEO from '@/hooks/useSEO';
 
 const ReferencesPage = () => {
   useSEO({
-    title: 'Referenciák – Sikeres AI Projektek Magyar Cégeknek | Bindflow',
-    description: 'Valós eredmények: 30% hatékonyságnövekedés, 15 óra megtakarítás hetente. Nézd meg, hogyan segítette a Bindflow partnereit az AI bevezetésében.',
+    title: 'AI Megoldások & Automatizáció Magyarországon | Bindflow',
+    description: 'Valós eredmények: 30% hatékonyságnövekedés, 15 óra megtakarítás hetente. Nézd meg hogyan segítette a Bindflow partnereit az AI bevezetésében.',
     canonical: 'https://bindflow.hu/references',
   });
   return <ReferencesSection />;
