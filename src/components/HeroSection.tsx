@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import BindflowLogo from '@/components/BindflowLogo';
 import teamImg from '@/assets/team-collab.jpg';
+import FAQSection from '@/components/FAQSection';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -184,6 +185,9 @@ const HeroSection = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FAQSection />
 
       {/* CTA Banner */}
       <section className="py-16 bg-background">
