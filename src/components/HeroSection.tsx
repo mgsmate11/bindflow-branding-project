@@ -44,6 +44,7 @@ const HeroSection = () => {
     <>
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-background py-8">
+        <div className="absolute inset-0 bg-hero-mesh" />
         <div className="absolute inset-0 dot-pattern opacity-40" />
         <HeroParticles />
 
@@ -77,12 +78,12 @@ const HeroSection = () => {
               {t('AI Megoldások Vállalatoknak', 'AI Solutions for Enterprises')}
             </motion.div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
-              <span className="text-primary">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight mb-5">
+              <span className="text-foreground">
                 {t('Intelligens folyamatok,', 'Intelligent workflows,')}
               </span>
               <br />
-              <span className="text-primary">
+              <span className="text-gradient-hero">
                 {t('emberi léptékkel.', 'on a human scale.')}
               </span>
             </h1>

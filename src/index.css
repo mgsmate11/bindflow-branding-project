@@ -49,6 +49,49 @@
 
     --glow-cyan: 188 90% 61%;
   }
+
+  .dark {
+    /* Sötét paletta — a világos brand-tokenek sötét párja (mély charcoal háttér,
+       meleg krém szöveg), a cián accent változatlan a márka-konzisztenciáért. */
+    --background: 220 16% 9%;
+    --foreground: 43 30% 90%;
+
+    --card: 220 14% 13%;
+    --card-foreground: 43 30% 90%;
+
+    --popover: 220 14% 13%;
+    --popover-foreground: 43 30% 90%;
+
+    --primary: 0 80% 58%;
+    --primary-foreground: 43 38% 96%;
+
+    --secondary: 220 12% 18%;
+    --secondary-foreground: 43 30% 90%;
+
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 188 90% 61%;
+    --accent-foreground: 220 16% 9%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 22%;
+    --input: 220 12% 22%;
+    --ring: 0 80% 58%;
+
+    --sidebar-background: 220 16% 11%;
+    --sidebar-foreground: 43 30% 90%;
+    --sidebar-primary: 0 80% 58%;
+    --sidebar-primary-foreground: 43 38% 96%;
+    --sidebar-accent: 188 90% 61%;
+    --sidebar-accent-foreground: 220 16% 9%;
+    --sidebar-border: 220 12% 22%;
+    --sidebar-ring: 0 80% 58%;
+
+    --glow-cyan: 188 90% 61%;
+  }
 }
 
 @layer base {
@@ -117,6 +160,15 @@
     background-image: radial-gradient(circle, hsl(var(--accent) / 0.15) 1px, transparent 1px);
     background-size: 30px 30px;
   }
+
+  .bg-hero-mesh {
+    background-image:
+      radial-gradient(ellipse 60% 50% at 20% 25%, hsl(var(--accent) / 0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 55% at 80% 30%, hsl(var(--primary) / 0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 50% at 65% 80%, hsl(var(--accent) / 0.10) 0%, transparent 55%);
+    background-size: 200% 200%;
+    animation: mesh-drift 24s ease-in-out infinite;
+  }
 }
 
 @keyframes gradient-shift {
@@ -134,4 +186,19 @@
   25% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
   50% { transform: translateY(-40px) translateX(-5px); opacity: 0.3; }
   75% { transform: translateY(-20px) translateX(-10px); opacity: 0.5; }
+}
+
+@keyframes mesh-drift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+/* A finom mozgásokat tiszteljük a felhasználó csökkentett-mozgás beállításához. */
+@media (prefers-reduced-motion: reduce) {
+  .bg-hero-mesh,
+  .animate-float,
+  .text-gradient-animated,
+  .pulse-cta {
+    animation: none !important;
+  }
 }

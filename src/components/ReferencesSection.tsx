@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import umbrollLogo from '@/assets/umbroll-logo.png';
 import femszerLogo from '@/assets/femszer-logo.png';
+import CountUp from '@/components/CountUp';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -172,7 +173,7 @@ const ReferencesSection = () => {
                     <cs.icon className="w-10 h-10 text-primary" />
                   </div>
                   <div className="mt-3 text-center">
-                    <div className="text-3xl font-extrabold text-primary">{cs.stat}</div>
+                    <div className="text-3xl font-extrabold text-primary"><CountUp value={cs.stat} /></div>
                     <div className="text-xs text-muted-foreground">{cs.statLabel}</div>
                   </div>
                 </div>
