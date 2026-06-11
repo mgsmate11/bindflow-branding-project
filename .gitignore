@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code dev tooling & local meta files (NOT part of the website — never committed)
+.claude/
+CLAUDE.md
+ROADMAP.md

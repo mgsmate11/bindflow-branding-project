@@ -1,0 +1,13 @@
+# Netlify build configuration
+# Pins the build so the cloud deploy matches local development exactly:
+# one package manager (npm) and a fixed Node version. The SPA fallback is
+# handled by public/_redirects (/* -> /index.html 200).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Force npm install regardless of any other lockfile detection.
+  NPM_FLAGS = "--no-audit --no-fund"
