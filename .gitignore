@@ -25,5 +25,6 @@ dist-ssr
 
 # Claude Code dev tooling & local meta files (NOT part of the website — never committed)
 .claude/
+.playwright-cli/
 CLAUDE.md
 ROADMAP.md

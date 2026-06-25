@@ -117,7 +117,7 @@ const ContactSection = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div {...fadeUp}>
             <div className="flex justify-center mb-6">
-              <BindflowLogo className="h-12 w-auto" />
+              <BindflowLogo size="md" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {t('Lépjen kapcsolatba velünk', 'Get in Touch')}
