@@ -11,6 +11,7 @@ const Footer = () => {
     { label: t('Bemutatkozás', 'Intro'), href: '/' },
     { label: t('Szolgáltatások', 'Services'), href: '/services' },
     { label: t('Referenciák', 'References'), href: '/references' },
+    { label: t('Blog', 'Blog'), href: '/blog' },
     { label: t('Kapcsolat', 'Contact'), href: '/contact' },
   ];
 
@@ -78,7 +79,12 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>© {year} Bindflow. {t('Minden jog fenntartva.', 'All rights reserved.')}</p>
-          <p>{t('AI Megoldások Vállalatoknak', 'AI Solutions for Enterprises')}</p>
+          <div className="flex items-center gap-4">
+            <Link to="/adatvedelem" className="transition-colors hover:text-primary">
+              {t('Adatkezelési tájékoztató', 'Privacy Policy')}
+            </Link>
+            <span>{t('AI Megoldások Vállalatoknak', 'AI Solutions for Enterprises')}</span>
+          </div>
         </div>
       </div>
     </footer>

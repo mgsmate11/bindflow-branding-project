@@ -4,8 +4,9 @@ import { ArrowRight, CheckCircle, Lightbulb, Target, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import BindflowLogo from '@/components/BindflowLogo';
-import teamImg from '@/assets/team-collab.jpg';
+import teamImg from '@/assets/team-collab.webp';
 import FAQSection from '@/components/FAQSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -151,7 +152,7 @@ const HeroSection = () => {
 
             <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img src={teamImg} alt={t('Bindflow csapat', 'Bindflow team')} className="w-full h-auto object-cover" />
+                <img src={teamImg} alt={t('Bindflow csapat', 'Bindflow team')} width={1024} height={1024} loading="lazy" decoding="async" className="w-full h-auto object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
               </div>
             </motion.div>
@@ -186,6 +187,9 @@ const HeroSection = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* FAQ */}
       <FAQSection />

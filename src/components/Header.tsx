@@ -17,6 +17,7 @@ const Header = () => {
     { label: t('Bemutatkozás', 'Intro'), href: '/' },
     { label: t('Szolgáltatások', 'Services'), href: '/services' },
     { label: t('Referenciák', 'References'), href: '/references' },
+    { label: t('Blog', 'Blog'), href: '/blog' },
     { label: t('Kapcsolat', 'Contact'), href: '/contact' },
   ];
 

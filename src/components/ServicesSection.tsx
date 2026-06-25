@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { Brain, MessageSquare, Workflow, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import aiAssistantImg from '@/assets/ai-assistant.jpg';
-import automationImg from '@/assets/automation.jpg';
-import dataVizImg from '@/assets/data-viz.jpg';
+import aiAssistantImg from '@/assets/ai-assistant.webp';
+import automationImg from '@/assets/automation.webp';
+import dataVizImg from '@/assets/data-viz.webp';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -144,7 +144,7 @@ const ServicesSection = () => {
                 className="rounded-2xl overflow-hidden border border-border bg-card group card-hover"
               >
                 <div className="aspect-video overflow-hidden">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={item.img} alt={item.title} width={1024} height={1024} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>

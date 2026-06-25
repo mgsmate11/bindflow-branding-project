@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import logoImg from '@/assets/bindflow-logo-clean.png';
+import logoImg from '@/assets/bindflow-logo-clean.webp';
 
 const BindflowLogo = ({ className = '', size = 'md' }: { className?: string; size?: 'sm' | 'md' | 'lg' }) => {
   const sizes = { sm: 48, md: 64, lg: 500 };

@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { TrendingUp, Quote, ArrowRight, BarChart3, Clock, Smile, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import umbrollLogo from '@/assets/umbroll-logo.png';
-import femszerLogo from '@/assets/femszer-logo.png';
+import umbrollLogo from '@/assets/umbroll-logo.webp';
+import femszerLogo from '@/assets/femszer-logo.webp';
 import CountUp from '@/components/CountUp';
 
 const fadeUp = {
@@ -135,6 +135,8 @@ const ReferencesSection = () => {
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
+                      loading="lazy"
+                      decoding="async"
                       className="max-w-full max-h-full object-contain"
                     />
                   </div>

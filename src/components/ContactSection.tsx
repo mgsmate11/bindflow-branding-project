@@ -3,8 +3,19 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { Mail, Phone, Send, MapPin, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import BindflowLogo from '@/components/BindflowLogo';
 
@@ -16,29 +27,53 @@ const fadeUp = {
 };
 
 const ContactSection = () => {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { toast } = useToast();
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // A séma a komponensen belül jön létre, így a hibaüzenetek kétnyelvűek.
+  // (lang a dep, hogy nyelvváltáskor frissüljenek az üzenetek.)
+  const schema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, t('Kérjük, adja meg a nevét.', 'Please enter your name.')),
+        email: z
+          .string()
+          .min(1, t('Az e-mail cím megadása kötelező.', 'Email address is required.'))
+          .email(t('Érvénytelen e-mail cím.', 'Invalid email address.')),
+        company: z.string().optional(),
+        message: z
+          .string()
+          .min(10, t('Az üzenet legalább 10 karakter legyen.', 'The message must be at least 10 characters.')),
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lang]
+  );
+
+  type ContactForm = z.infer<typeof schema>;
+
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(schema),
+    defaultValues: { name: '', email: '', company: '', message: '' },
+  });
+
+  const onSubmit = async (values: ContactForm) => {
     try {
       const response = await fetch('https://formspree.io/f/mkoqyggr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(values),
       });
       await fetch('https://bindflow.app.n8n.cloud/webhook-test/8d630918-610e-40ae-b087-1943f77a5898', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(values),
       });
       if (response.ok) {
         toast({
           title: t('Üzenet elküldve!', 'Message sent!'),
           description: t('Hamarosan felvesszük Önnel a kapcsolatot.', 'We will get back to you shortly.'),
         });
-        setFormData({ name: '', email: '', company: '', message: '' });
+        form.reset();
       } else {
         toast({
           title: t('Hiba történt!', 'Something went wrong!'),
@@ -107,37 +142,71 @@ const ContactSection = () => {
               <h2 className="text-2xl font-bold mb-6">
                 {t('Írjon nekünk', 'Send us a message')}
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  placeholder={t('Neve', 'Your name')}
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                />
-                <Input
-                  type="email"
-                  placeholder={t('E-mail cím', 'Email address')}
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                />
-                <Input
-                  placeholder={t('Cég neve (opcionális)', 'Company name (optional)')}
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                />
-                <Textarea
-                  placeholder={t('Üzenete', 'Your message')}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  rows={5}
-                />
-                <Button type="submit" className="w-full gap-2">
-                  <Send className="h-4 w-4" />
-                  {t('Küldés', 'Send')}
-                </Button>
-              </form>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only">{t('Neve', 'Your name')}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={t('Neve', 'Your name')} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only">{t('E-mail cím', 'Email address')}</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder={t('E-mail cím', 'Email address')} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only">
+                          {t('Cég neve (opcionális)', 'Company name (optional)')}
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder={t('Cég neve (opcionális)', 'Company name (optional)')}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="sr-only">{t('Üzenete', 'Your message')}</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder={t('Üzenete', 'Your message')} rows={5} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" className="w-full gap-2" disabled={form.formState.isSubmitting}>
+                    <Send className="h-4 w-4" />
+                    {form.formState.isSubmitting ? t('Küldés…', 'Sending…') : t('Küldés', 'Send')}
+                  </Button>
+                </form>
+              </Form>
             </motion.div>
 
             {/* Contact info */}
