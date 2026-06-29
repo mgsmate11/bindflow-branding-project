@@ -4,13 +4,6 @@ type Theme = 'light' | 'dark';
 
 const STORAGE_KEY = 'bindflow-theme';
 
-const getInitialTheme = (): Theme => {
-  if (typeof window === 'undefined') return 'light';
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  // A brand alapból világos; ha nincs mentett választás, marad a világos téma.
-  return stored === 'dark' || stored === 'light' ? stored : 'light';
-};
-
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
@@ -26,8 +19,16 @@ const ThemeContext = createContext<ThemeContextType>({
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  // A brand alapból világos; a prerender (SSG) és a kliens első renderje is 'light',
+  // így nincs hidratációs eltérés. A mentett választást hidratálás után vesszük át.
+  const [theme, setTheme] = useState<Theme>('light');
   const toggleTheme = () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+
+  // Hidratálás után: vedd át a böngészőben mentett témát, ha van.
+  useEffect(() => {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    if (stored === 'dark') setTheme('dark');
+  }, []);
 
   // Persist the choice and toggle the `dark` class on <html> for Tailwind's darkMode: 'class'.
   useEffect(() => {

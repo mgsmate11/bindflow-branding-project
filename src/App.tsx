@@ -1,9 +1,4 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/contexts/ThemeContext";
+import type { RouteRecord } from "vite-react-ssg";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/ServicesPage";
@@ -13,32 +8,29 @@ import BlogPage from "./pages/BlogPage";
 import ArticlePage from "./pages/ArticlePage";
 import PrivacyPage from "./pages/PrivacyPage";
 import NotFound from "./pages/NotFound";
+import { articles } from "./data/articles";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/references" element={<ReferencesPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<ArticlePage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/adatvedelem" element={<PrivacyPage />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+// Útvonalak a vite-react-ssg számára (react-router data routes). Build időben
+// minden útvonal saját, tartalommal teli HTML-lé renderelődik (lásd main.tsx).
+export const routes: RouteRecord[] = [
+  {
+    path: "/",
+    element: <Layout />,
+    entry: "src/components/Layout.tsx",
+    children: [
+      { index: true, element: <Index /> },
+      { path: "services", element: <ServicesPage /> },
+      { path: "references", element: <ReferencesPage /> },
+      { path: "blog", element: <BlogPage /> },
+      {
+        path: "blog/:slug",
+        element: <ArticlePage />,
+        // Melyik cikk-útvonalak generálódjanak statikusan (az összes cikk).
+        getStaticPaths: () => articles.map((a) => `blog/${a.slug}`),
+      },
+      { path: "contact", element: <ContactPage /> },
+      { path: "adatvedelem", element: <PrivacyPage /> },
+    ],
+  },
+  { path: "*", element: <NotFound /> },
+];

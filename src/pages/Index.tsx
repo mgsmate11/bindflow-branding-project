@@ -1,12 +1,14 @@
 import HeroSection from '@/components/HeroSection';
-import useSEO from '@/hooks/useSEO';
+import Seo from '@/components/Seo';
 
-const Index = () => {
-  useSEO({
-    title: 'AI Megoldások & Automatizáció Magyarországon | Bindflow',
-    description: 'A Bindflow AI tanácsadással, chatbotokkal és automatizációval segíti a magyar vállalkozásokat. Intelligens folyamatok, emberi léptékkel.',
-    canonical: 'https://bindflow.hu/',
-  });
-  return <HeroSection />;
-};
+const Index = () => (
+  <>
+    <Seo
+      title="AI Megoldások & Automatizáció Magyarországon | Bindflow"
+      description="A Bindflow AI tanácsadással, chatbotokkal és automatizációval segíti a magyar vállalkozásokat. Intelligens folyamatok, emberi léptékkel."
+      canonical="https://bindflow.hu/"
+    />
+    <HeroSection />
+  </>
+);
 export default Index;
