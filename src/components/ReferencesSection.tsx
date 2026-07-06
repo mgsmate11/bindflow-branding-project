@@ -51,18 +51,6 @@ const ReferencesSection = () => {
       ),
       tags: [t('Chatbot', 'Chatbot'), t('Ügyfélszolgálat', 'Customer Service')],
     },
-    {
-      icon: Smile,
-      stat: '95%',
-      statLabel: t('ügyfél elégedettség', 'client satisfaction'),
-      title: t('Logisztikai cég', 'Logistics company'),
-      quote: t('"A Bindflow segítségével teljesen digitalizáltuk a belső folyamatainkat."', '"With Bindflow\'s help, we fully digitized our internal processes."'),
-      description: t(
-        'No-code automatizációval összekötöttük a raktárkezelő, számlázó és CRM rendszereket. Az adatok immár valós időben szinkronizálódnak.',
-        'With no-code automation, we connected warehouse management, invoicing, and CRM systems. Data now syncs in real-time.'
-      ),
-      tags: [t('No-code', 'No-code'), t('Integráció', 'Integration')],
-    },
   ];
 
   const partners = [
