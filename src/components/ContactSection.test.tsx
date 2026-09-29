@@ -64,13 +64,6 @@ const ContactSection = () => {
         body: JSON.stringify(values),
       });
 
-      // n8n külön fut: ha hibázik, az nem akasztja meg az űrlap beküldését.
-      fetch('https://bindflow.app.n8n.cloud/webhook/8d630918-610e-40ae-b087-1943f77a5898', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      }).catch(() => {});
-
       if (response.ok) {
         toast({
           title: t('Üzenet elküldve!', 'Message sent!'),
