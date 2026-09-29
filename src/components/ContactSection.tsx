@@ -60,14 +60,10 @@ const ContactSection = () => {
     try {
       const response = await fetch('https://formspree.io/f/mkoqyggr', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(values),
       });
-      await fetch('https://bindflow.app.n8n.cloud/webhook-test/8d630918-610e-40ae-b087-1943f77a5898', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
+
       if (response.ok) {
         toast({
           title: t('Üzenet elküldve!', 'Message sent!'),
