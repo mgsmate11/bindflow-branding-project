@@ -13,12 +13,13 @@ interface Section {
   heading: { hu: string; en: string };
   paragraphs: { hu: string; en: string }[];
   bullets?: { hu: string; en: string }[];
+  note?: { hu: string; en: string };
 }
 
 const PrivacySection = () => {
   const { t } = useLang();
 
-  const lastUpdated = '2026-06-11';
+  const lastUpdated = '2026-09-30';
 
   const sections: Section[] = [
     {
@@ -34,8 +35,8 @@ const PrivacySection = () => {
       heading: { hu: '2. Milyen adatokat kezelünk', en: '2. What data we process' },
       paragraphs: [
         {
-          hu: 'Kizárólag azokat az adatokat kezeljük, amelyeket Ön a kapcsolati űrlapon önként megad. Ezek a következők:',
-          en: 'We only process the data you voluntarily provide via the contact form. These are:',
+          hu: 'A kapcsolati űrlapon Ön által önként megadott adatokat kezeljük. Emellett a weboldal kiszolgálásakor a tárhelyszolgáltató technikai okokból automatikusan rögzíti a látogatás adatait (IP-cím, böngésző típusa, a kérés időpontja). Az űrlapon megadott adatok:',
+          en: 'We process the data you voluntarily provide via the contact form. In addition, when serving the website, our hosting provider automatically records technical access data for operational reasons (IP address, browser type, time of the request). The data provided via the form:',
         },
       ],
       bullets: [
@@ -58,20 +59,28 @@ const PrivacySection = () => {
       heading: { hu: '4. Adatfeldolgozók', en: '4. Data processors' },
       paragraphs: [
         {
-          hu: 'A kapcsolati űrlap működéséhez külső szolgáltatókat veszünk igénybe, amelyek az adatait a nevünkben, technikai célból dolgozzák fel:',
-          en: 'To operate the contact form we use external service providers that process your data on our behalf for technical purposes:',
+          hu: 'A weboldal és a kapcsolati űrlap működéséhez az alábbi külső szolgáltatókat vesszük igénybe, amelyek az adatokat a nevünkben, technikai célból dolgozzák fel:',
+          en: 'To operate the website and the contact form, we use the following external service providers, which process data on our behalf for technical purposes:',
         },
       ],
       bullets: [
         {
-          hu: 'Formspree – az űrlapüzenetek e-mailben történő továbbítása (formspree.io).',
-          en: 'Formspree – forwarding form messages by email (formspree.io).',
+          hu: 'Cloudflare – a weboldal tárhelye és kiszolgálása; a látogatás technikai adatait (pl. IP-cím) kezeli (cloudflare.com).',
+          en: 'Cloudflare – website hosting and delivery; processes technical access data such as IP addresses (cloudflare.com).',
         },
         {
-          hu: 'n8n – az üzenetek automatizált feldolgozása munkafolyamatban (n8n.io).',
-          en: 'n8n – automated processing of messages in a workflow (n8n.io).',
+          hu: 'Formspree – a kapcsolati űrlap üzeneteinek fogadása és e-mailben történő továbbítása (formspree.io).',
+          en: 'Formspree – receiving contact form messages and forwarding them by email (formspree.io).',
+        },
+        {
+          hu: 'Zoho Mail – a beérkező üzenetek tárolása a céges postafiókban (zoho.com).',
+          en: 'Zoho Mail – storing incoming messages in our business mailbox (zoho.com).',
         },
       ],
+      note: {
+        hu: 'Egyes szolgáltatók az Európai Unión kívül (pl. az Egyesült Államokban) is kezelhetnek adatot. Ilyen esetben az adattovábbítás megfelelő garanciák (pl. az EU–USA adatvédelmi keretrendszer vagy az Európai Bizottság általános szerződési feltételei) alapján történik.',
+        en: "Some providers may process data outside the European Union (e.g. in the United States). In such cases, transfers are based on appropriate safeguards (e.g. the EU–US Data Privacy Framework or the European Commission's Standard Contractual Clauses).",
+      },
     },
     {
       heading: { hu: '5. Sütik és böngészőben tárolt adatok', en: '5. Cookies and browser storage' },
@@ -165,6 +174,11 @@ const PrivacySection = () => {
                       <li key={bi}>{t(b.hu, b.en)}</li>
                     ))}
                   </ul>
+                )}
+                {section.note && (
+                  <p className="text-base text-foreground/80 leading-relaxed mt-3">
+                    {t(section.note.hu, section.note.en)}
+                  </p>
                 )}
               </motion.div>
             ))}
