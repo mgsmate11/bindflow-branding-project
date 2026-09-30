@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { renderWithProviders, screen, waitFor } from '@/test/test-utils';
+import { renderWithProviders, screen } from '@/test/test-utils';
 import ContactSection from '@/components/ContactSection';
+import { Toaster } from '@/components/ui/toaster';
 
 describe('ContactSection űrlap-validáció', () => {
   beforeEach(() => {
@@ -33,12 +34,14 @@ describe('ContactSection űrlap-validáció', () => {
     expect(await screen.findByText('Érvénytelen e-mail cím.')).toBeInTheDocument();
   });
 
-  it('helyes kitöltésnél elküldi az adatokat (fetch meghívódik)', async () => {
-    const fetchSpy = vi
-      .spyOn(global, 'fetch')
-      .mockResolvedValue(new Response(null, { status: 200 }));
+  const fillAndSubmit = async () => {
     const user = userEvent.setup();
-    renderWithProviders(<ContactSection />);
+    renderWithProviders(
+      <>
+        <ContactSection />
+        <Toaster />
+      </>
+    );
 
     await user.type(screen.getByPlaceholderText('Neve'), 'Teszt Elek');
     await user.type(screen.getByPlaceholderText('E-mail cím'), 'teszt@example.com');
@@ -47,9 +50,33 @@ describe('ContactSection űrlap-validáció', () => {
       'Ez egy elég hosszú teszt üzenet a validációhoz.'
     );
     await user.click(screen.getByRole('button', { name: /Küldés/i }));
+  };
 
-    await waitFor(() => expect(fetchSpy).toHaveBeenCalled());
-    // Formspree + n8n → két hívás.
-    expect(fetchSpy).toHaveBeenCalledTimes(2);
+  it('helyes kitöltésnél egyszer, a Formspree-re küld, és sikerüzenetet mutat', async () => {
+    const fetchSpy = vi
+      .spyOn(global, 'fetch')
+      .mockResolvedValue(new Response(null, { status: 200 }));
+
+    await fillAndSubmit();
+
+    expect(await screen.findByText('Üzenet elküldve!')).toBeInTheDocument();
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledWith('https://formspree.io/f/mkoqyggr', expect.anything());
+  });
+
+  it('hibás szerverválasznál hibaüzenetet mutat', async () => {
+    vi.spyOn(global, 'fetch').mockResolvedValue(new Response(null, { status: 500 }));
+
+    await fillAndSubmit();
+
+    expect(await screen.findByText('Hiba történt!')).toBeInTheDocument();
+  });
+
+  it('hálózati hibánál hibaüzenetet mutat', async () => {
+    vi.spyOn(global, 'fetch').mockRejectedValue(new TypeError('Failed to fetch'));
+
+    await fillAndSubmit();
+
+    expect(await screen.findByText('Hiba történt!')).toBeInTheDocument();
   });
 });
